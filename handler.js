@@ -71,6 +71,8 @@ class Handler {
     try {
       const { imageUrl } = event.queryStringParameters
 
+      console.log(imageUrl)
+
       const buffer = await this.getImageBuffer(imageUrl)
 
       const { names, workingItems } = await this.detectImageLabels(buffer)
@@ -79,14 +81,16 @@ class Handler {
 
       const finalResult = this.formatJSONResults(texts, workingItems)
 
+      console.log(finalResult)
+
       return {
         statusCode: 200,
-        body: finalResult
+        body: JSON.stringify(finalResult)
       }
     } catch (error) {
       return {
         statusCode: 500,
-        body: error
+        body: 'Internal server error'
       }
     }
   }

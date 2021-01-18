@@ -37,12 +37,9 @@ provider:
 functions:
   image-analysis:
     handler: handler.main
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
     events:
-      - httpApi:
-          path: /analyse
+      - http:
+          path: analyse
           method: get
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
